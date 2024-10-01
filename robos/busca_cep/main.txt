@@ -1,0 +1,7 @@
+Excel.LaunchExcel.LaunchAndOpenUnderExistingProcess Path: $'''C:\\Users\\vagrant\\Downloads\\busca_cep.xlsx''' Visible: True ReadOnly: False Instance=> excel
+Excel.GetFirstFreeColumnRow Instance: excel FirstFreeRow=> linha_livre
+LOOP linha FROM 2 TO linha_livre - 1 STEP 1
+    Excel.ReadFromExcel.ReadCell Instance: excel StartColumn: $'''A''' StartRow: linha ReadAsText: False CellValue=> cep
+    CALL busca_cep
+END
+Excel.CloseExcel.CloseAndSave Instance: excel
